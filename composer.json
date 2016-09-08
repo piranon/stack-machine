@@ -1,0 +1,27 @@
+{
+    "name": "piranon/stack-machine",
+    "type": "library",
+    "description": "A simple system that performs arithmetic operations",
+    "authors": [
+        {
+            "name": "Piranon Nawakulpun",
+            "email": "piranon.n@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.5"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~5.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "StackMachine\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "StackMachine\\Tests\\": "tests/"
+        }
+    }
+}
