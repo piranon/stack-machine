@@ -69,4 +69,15 @@ class StackMachineTest extends TestCase
 
         $this->assertSame($expected, $result);
     }
+
+    public function testPassEmptyStringShouldReturnMinusOne()
+    {
+        $expected = -1;
+
+        $string = '';
+        $stackMachine = new StackMachine();
+        $result = $stackMachine->solution($string);
+
+        $this->assertSame($expected, $result);
+    }
 }

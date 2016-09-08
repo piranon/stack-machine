@@ -43,14 +43,10 @@ class StackMachine
         foreach (str_split($input) as $character) {
             switch($character){
                 case StackMachine::OPERATION_MULTIPLY:
-                    $value1 = $stack->pop();
-                    $value2 = $stack->pop();
-                    $stack->push($value1 * $value2);
+                    $stack->push($stack->pop() * $stack->pop());
                     break;
                 case StackMachine::OPERATION_PLUS;
-                    $value1 = $stack->pop();
-                    $value2 = $stack->pop();
-                    $stack->push($value1 + $value2);
+                    $stack->push($stack->pop() + $stack->pop());
                     break;
                 default:
                     $stack->push($this->validateCharacter($character));
