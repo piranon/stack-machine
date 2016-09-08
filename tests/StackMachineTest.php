@@ -26,6 +26,17 @@ class StackMachineTest extends TestCase
         $this->assertSame($expected, $result);
     }
 
+    public function testPassTripleOnePlusOneShouldReturnOne()
+    {
+        $expected = 1;
+
+        $string = '111*1';
+        $stackMachine = new StackMachine();
+        $result = $stackMachine->solution($string);
+
+        $this->assertSame($expected, $result);
+    }
+
     public function testPassElevenDoublePlusShouldReturnMinusOne()
     {
         $expected = -1;

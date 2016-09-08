@@ -32,7 +32,7 @@ class StackMachine
                     if (!is_numeric($char)) {
                         return -1;
                     }
-                    $stack[] = $char;
+                    $stack[] = (int) $char;
             }
         }
 
