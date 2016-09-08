@@ -1,41 +1,78 @@
 <?php
 namespace StackMachine;
 
+use StackMachine\Exception\InvalidCharacterException;
+use StackMachine\Model\Stack;
+
+/**
+ * Class StackMachine
+ * @package StackMachine
+ */
 class StackMachine
 {
     const OPERATION_MULTIPLY = '*';
     const OPERATION_PLUS = '+';
 
-    public function solution($string)
+    /**
+     * @param string $input
+     * @return int
+     */
+    public function solution($input)
     {
-        $stack = [];
+        $stack = new Stack();
 
-        foreach (str_split($string) as $char) {
-            switch($char){
+        try {
+            $stack = $this->processString($input, $stack);
+        } catch (\Exception $e) {
+            return -1;
+        }
+
+        return $stack->pop();
+    }
+
+    /**
+     * Processes a string of characters
+     *
+     * @param string $input
+     * @param Stack $stack
+     * @return Stack
+     * @throws InvalidCharacterException
+     */
+    private function processString($input, Stack $stack)
+    {
+        foreach (str_split($input) as $character) {
+            switch($character){
                 case StackMachine::OPERATION_MULTIPLY:
-                    $value1 = array_pop($stack);
-                    $value2 = array_pop($stack);
-                    if ($value1 === null || $value2 === null) {
-                        return -1;
-                    }
-                    $stack[] = $value1 * $value2;
+                    $value1 = $stack->pop();
+                    $value2 = $stack->pop();
+                    $stack->push($value1 * $value2);
                     break;
                 case StackMachine::OPERATION_PLUS;
-                    $value1 = array_pop($stack);
-                    $value2 = array_pop($stack);
-                    if ($value1 === null || $value2 === null) {
-                        return -1;
-                    }
-                    $stack[] = $value1 + $value2;
+                    $value1 = $stack->pop();
+                    $value2 = $stack->pop();
+                    $stack->push($value1 + $value2);
                     break;
                 default:
-                    if (!is_numeric($char)) {
-                        return -1;
-                    }
-                    $stack[] = (int) $char;
+                    $stack->push($this->validateCharacter($character));
             }
         }
 
-        return array_pop($stack);
+        return $stack;
+    }
+
+    /**
+     * Validate the character should be numeric
+     *
+     * @param string $character
+     * @return int
+     * @throws InvalidCharacterException
+     */
+    private function validateCharacter($character)
+    {
+        if (is_numeric($character) === false) {
+            throw new InvalidCharacterException();
+        }
+
+        return (int)$character;
     }
 }
