@@ -13,12 +13,25 @@ class StackMachine
         foreach (str_split($string) as $char) {
             switch($char){
                 case StackMachine::OPERATION_MULTIPLY:
-                    $stack[] = array_pop($stack) * array_pop($stack);
+                    $value1 = array_pop($stack);
+                    $value2 = array_pop($stack);
+                    if ($value1 === null || $value2 === null) {
+                        return -1;
+                    }
+                    $stack[] = $value1 * $value2;
                     break;
                 case StackMachine::OPERATION_PLUS;
-                    $stack[] = array_pop($stack) + array_pop($stack);
+                    $value1 = array_pop($stack);
+                    $value2 = array_pop($stack);
+                    if ($value1 === null || $value2 === null) {
+                        return -1;
+                    }
+                    $stack[] = $value1 + $value2;
                     break;
                 default:
+                    if (!is_numeric($char)) {
+                        return -1;
+                    }
                     $stack[] = $char;
             }
         }
