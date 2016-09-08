@@ -15,7 +15,7 @@ class StackMachineTest extends TestCase
         $this->assertSame($expected, $result);
     }
 
-    public function testPassNinetyNineMulPlusNinePlusPlusShouldReturnNine()
+    public function testPassNinetyNineMulPlusNinePlusPlusShouldReturnNinetyNine()
     {
         $expected = 99;
 
