@@ -1,4 +1,4 @@
-# stack-machine
+# stack-machine [![Build Status](https://travis-ci.org/piranon/stack-machine.svg?branch=master)](https://travis-ci.org/piranon/stack-machine)
 
 A stack machine is a simple system that performs arithmetic operations on an input string of numbers and operators
 
